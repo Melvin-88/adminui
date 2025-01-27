@@ -1,0 +1,22 @@
+.formSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  &:not(:first-child) {
+    margin-top: 1.5rem;
+  }
+
+  .formSectionLabel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+  }
+
+  > *:not(:first-child) {
+    margin-top: 1rem;
+  }
+}

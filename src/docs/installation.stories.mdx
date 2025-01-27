@@ -1,0 +1,130 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Source } from '@storybook/addon-docs/blocks';
+
+<Meta title="Installation guide" />
+
+# Installation guide
+
+Install library
+
+`yarn add @interdan/admin-ui`
+
+Add required dependencies
+
+```json
+"@date-io/core": "^1.3.6",
+"@date-io/date-fns": "1.x",
+"@material-ui/core": "^4.12.3",
+"@material-ui/icons": "^4.11.2",
+"@material-ui/lab": "^4.0.0-alpha.60",
+"@material-ui/pickers": "^3.3.10",
+"@types/sortablejs": "1",
+"date-fns": "^2.16.1",
+"lodash": "^4.0.0",
+"prop-types": "^15.6.0",
+"react": "^17.0.1",
+"react-content-loader": "^6.2.1",
+"react-dom": "^17.0.1",
+"react-hook-form": "^6.11.5",
+"react-toastify": "^6.1.0",
+"suneditor-react": "^2.14.6"
+```
+
+Wrap application into **GlobalConfig** and configure it.
+
+Global config props:
+``` ts
+interface IGlobalConfig {
+  locale: Locale;
+  textOverrides: Partial<TTexts>;
+}
+```
+
+Example:
+
+``` tsx
+import React, { ReactElement } from 'react';
+import { GlobalConfig, Locale } from '@interdan/admin-ui';
+
+import RoutingRules from './routingRules';
+
+const App = (): ReactElement => (
+  <GlobalConfig
+     locale={Locale.DK}
+     cloudinaryConfig={{
+       cloudName: 'demo',
+       handleError: (src) => alert(`Failed loading ${src}`)
+     }}
+   >
+    <RoutingRules />
+  </GlobalConfig>
+);
+
+export default App;`
+```
+
+**BaseLayout** usage example (with `react-router-dom`):
+
+``` tsx
+import React, { ReactElement, useCallback, useMemo } from 'react';
+import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
+import { BaseLayout, CalculatorIcon, ElectricIcon, INavigationMenuItem, INavigationMenuProps } from '@interdan/admin-ui';
+
+import RouteUrl from '^config/routes';
+import { goToHomeRoute, goToTestRoute } from '^utils/routingHelpers';
+
+import Home from '../pages/Home';
+import Test from '../pages/Test';
+
+const Routes = (): ReactElement => {
+  const { pathname } = useLocation();
+
+  const getItemSelected = useCallback(
+    (item: INavigationMenuItem): boolean => pathname === item.value || (new RegExp(`^${item.value}/.+`).test(pathname)),
+    [pathname],
+  );
+
+  const navigationMenuProps = useMemo(
+    (): INavigationMenuProps => ({
+      Icon: ElectricIcon,
+      getItemSelected,
+      items: [
+        {
+          value: RouteUrl.Home,
+          label: 'First',
+          Icon: CalculatorIcon,
+          onClick: goToHomeRoute,
+        },
+        {
+          value: RouteUrl.Test,
+          label: 'Test',
+          Icon: CalculatorIcon,
+          onClick: goToTestRoute,
+        },
+      ],
+    }),
+    [getItemSelected],
+  );
+
+  return (
+    <BaseLayout navigationMenuProps={navigationMenuProps}>
+      <Switch>
+        <Route
+          exact
+          path={RouteUrl.Home}
+          component={Home}
+        />
+        <Route
+          exact
+          path={RouteUrl.Test}
+          component={Test}
+        />
+        <Redirect to={RouteUrl.Default} />
+      </Switch>
+    </BaseLayout>
+  );
+};
+
+export default Routes;
+
+```

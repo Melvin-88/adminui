@@ -1,0 +1,24 @@
+@mixin pointer-no-highlight() {
+  cursor: pointer;
+
+  &:hover,&:focus,&:active {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    user-select: none;
+  }
+}
+
+@mixin hover() {
+  @media (hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+%link-reset {
+  display: block;
+
+  color: currentColor;
+  text-decoration: none;
+}

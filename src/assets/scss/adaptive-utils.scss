@@ -1,0 +1,34 @@
+@import './constants';
+
+$break-md: 48rem; // 768px
+$break-lg: 64.0625rem; // 1025px
+$break-xlg: 94.25rem; //1508px
+
+@mixin tablet() {
+  @media screen and (min-width: $break-md) {
+    @content;
+  }
+}
+
+@mixin desktop() {
+  @media screen and (min-width: $break-lg) {
+    @content;
+  }
+}
+
+@mixin desktop-wide {
+  @media screen and (min-width: $break-xlg) {
+    @content;
+  }
+}
+
+$widescreen-boundary-width: 87.5rem; //1400px
+
+@mixin widescreen-boundary {
+  max-width: $widescreen-boundary-width;
+
+  margin-left: calc((100vw - #{$navigation-width} - #{$widescreen-boundary-width}) / 2);
+  margin-right: auto;
+  padding-left: 0;
+  padding-right: 0;
+}

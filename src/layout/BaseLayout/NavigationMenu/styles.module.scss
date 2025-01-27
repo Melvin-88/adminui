@@ -1,0 +1,108 @@
+@import '^styles/constants';
+
+@import '^styles/utils';
+
+.navigationMenu {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  width: 100%;
+  height: 100%;
+
+  padding: 1.5rem 1rem 1rem;
+
+  background-color: var(--theme-color-grey-050);
+
+  border-right: 1px solid var(--theme-color-grey-100);
+
+  transition: transform 0.2s ease-in-out;
+  transform: translateX(-100%);
+
+  &.open {
+    overflow-y: auto;
+
+    transform: translateX(0);
+
+    @include desktop {
+      overflow-y: inherit;
+    }
+  }
+
+  &.loading {
+    background-color: var(--theme-color-grey-000);
+  }
+
+  @include desktop {
+    position: fixed;
+
+    align-items: center;
+
+    width: $navigation-width;
+
+    padding: 0.75rem 0.5625rem;
+
+    transform: none;
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    width: 100%;
+
+    margin-bottom: 1.6875rem;
+    
+    @include desktop {
+      justify-content: center;
+
+      margin-bottom: 0;
+    }
+
+    .closeIcon {
+      @include desktop {
+        display: none;
+      }
+    }
+  }
+
+  .items {
+    @include desktop {
+      margin-top: 1.375rem;
+    }
+  }
+
+  .secondaryItems {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+
+    border-top: 1px solid var(--theme-color-grey-100);
+
+    @include desktop {
+      margin-top: auto;
+
+      border-top: 0;
+    }
+  }
+}
+
+.openIconContainer {
+  position: relative;
+}
+
+.openIcon {
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+  z-index: 1;
+
+  @include desktop {
+    display: none;
+  }
+}

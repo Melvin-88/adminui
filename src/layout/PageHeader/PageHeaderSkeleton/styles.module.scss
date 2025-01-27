@@ -1,0 +1,24 @@
+@import '^styles/utils';
+
+.pageHeaderSkeleton {
+  display: flex;
+  align-items: flex-end;
+
+  width: 100%;
+
+  @include desktop {
+    align-items: center;
+  }
+
+  .skeleton {
+    width: 100%;
+  }
+
+  .backButton {
+    margin-right: 1rem;
+
+    @include desktop {
+      margin-right: 0.75rem;
+    }
+  }
+}

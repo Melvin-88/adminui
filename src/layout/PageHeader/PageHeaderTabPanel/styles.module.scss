@@ -1,0 +1,11 @@
+@import '^styles/utils';
+
+.tabPanel {
+  @include desktop {
+    padding: 0 1.5rem;
+  }
+
+  @include desktop-wide {
+    @include widescreen-boundary;
+  }
+}

@@ -1,0 +1,65 @@
+@import '^styles/utils';
+
+.pageHeader {
+  position: relative;
+
+  width: 100%;
+
+  padding: 0.5rem 0;
+
+  border-bottom: 1px solid var(--theme-color-grey-100);
+
+  @include desktop {
+    padding: 0.5625rem 0;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column-reverse;
+
+    padding: 0 1rem;
+
+    @include desktop {
+      display: grid;
+      align-items: center;
+      justify-content: space-between;
+      grid-template-columns: 1fr auto;
+
+      min-height: 2.625rem;
+
+      padding: 0 1.5rem;
+    }
+
+    @include desktop-wide {
+      @include widescreen-boundary;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex: 1;
+
+      min-height: 2.625rem;
+
+      margin-bottom: 0.75rem;
+
+      @include desktop {
+        margin-bottom: 0;
+      }
+
+      .action {
+        margin-left: 0.75rem;
+      }
+    }
+  }
+
+  .tabPanel {
+    margin-top: 0.5625rem;
+    margin-bottom: -0.625rem;
+  }
+
+  .searchTitle {
+    cursor: pointer;
+  }
+}

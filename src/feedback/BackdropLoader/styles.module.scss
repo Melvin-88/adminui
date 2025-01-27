@@ -1,0 +1,14 @@
+.root {
+  flex-direction: column;
+}
+
+.icon {
+  color: var(--theme-color-grey-000);
+}
+
+.description {
+  margin-top: 1.5rem;
+  white-space: pre-line;
+
+  color: var(--theme-color-grey-000);
+}

@@ -1,0 +1,154 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Prevent redirection" />
+
+# Prevent redirection
+
+Often, we face with a necessity to prevent a user from leaving the page. Usually, that is an issue for forms, when user changed something, but trying to leave the form without saving
+
+In order to simplify and unify the implementation of this feature, here is a suggested approach.
+
+> ⚠️ The suggested approach prevents **only** history navigation. <br />It does not detect tab refresh or close events, or any other events, which come from anywhere else other than history
+
+
+> ℹ️ This example relies on [**history v4.x**](https://github.com/ReactTraining/history/tree/v4/docs) (as more recent versions do not work [**react-router**](https://github.com/ReactTraining/react-router/issues/7680#issuecomment-722607184))
+
+
+> ℹ️ Even though, this example uses [**react-hook-form**](https://react-hook-form.com/) and [**react-router**](https://reactrouter.com/web/guides/quick-start), it can be easily adapted to any other tools <br />
+The only strict dependency here is [**history v4.x**](https://github.com/ReactTraining/history/tree/v4/docs) and the fact, that we create a history manually, instead of relying on something like [**BrowserRouter**](https://reactrouter.com/web/api/BrowserRouter)
+
+``` ts
+// src/sharedHistory.ts
+
+import { createBrowserHistory } from 'history';
+
+const sharedHistory = createBrowserHistory({
+  // Disable the native prompts in order to be able to render a custom one
+  getUserConfirmation: (_: string, callback: (result: boolean) => void): void => (
+    callback(false)
+  ),
+});
+
+export default sharedHistory;
+```
+
+``` tsx
+// src/components/NavigationGuard/indext.tsx
+import React, { ReactElement, useCallback, useEffect, useRef, useState } from 'react';
+import { Location } from 'history';
+
+export interface INavigationGuardProps {
+  shouldBlock: boolean;
+}
+
+const NavigationGuard = ({ shouldBlock }: INavigationGuardProps): ReactElement => {
+  const [targetLocation, setTargetLocation] = useState<Location | null>(null);
+  const unblockRef = useRef<(() => void) | null>(null);
+
+  const unblockNavigation = useCallback(
+    (): void => {
+      if (typeof unblockRef.current === 'function') {
+        unblockRef.current();
+        unblockRef.current = null;
+      }
+    },
+    [],
+  );
+
+  const handleClose = useCallback(
+    (): void => setTargetLocation(null),
+    [],
+  );
+
+  const handleProceed = useCallback(
+    (): void => {
+      if (!targetLocation) {
+        return;
+      }
+
+      unblockNavigation();
+      setTargetLocation(null);
+
+      sharedHistory.push(targetLocation);
+    },
+    [targetLocation, unblockNavigation],
+  );
+
+  useEffect(
+    (): void | (() => void) => {
+      if (!shouldBlock) {
+        return;
+      }
+
+      unblockRef.current = sharedHistory.block((location: Location): string => {
+        setTargetLocation(location);
+        // Return empty string to prevent navigation
+        return '';
+      });
+
+      return unblockNavigation;
+    },
+    [shouldBlock, unblockNavigation],
+  );
+
+  return (
+    // Implement custom modal view, or use the one from @interdan/admin-ui
+    // !!IMPORTANT it should use handleProceed and handleClose functions
+  );
+};
+```
+
+``` tsx
+// src/forms/FormStateChecker/index.ts
+
+import React, { ReactElement } from 'react';
+import { useFormContext } from 'react-hook-form';
+
+const FormStateChecker = (): ReactElement => {
+  const { formState: { isDirty, isSubmitting } } = useFormContext();
+
+  return (
+    <NavigationGuard shouldBlock={isDirty && !isSubmitting} />
+  );
+}; 
+```
+
+> ⚠️ In order for `FormStateChecker` to work correctly, it should be placed inside `FormProvider`<br />
+(`FormProvider`, `FormField` are custom connectors to the `react-hook-form`)
+
+``` tsx
+// src/pages/Form/index.tsx
+
+import React, { ReactElement } from 'react';
+
+import FormProvider from '^forms/forms/FormProvider';
+import FormField from '^forms/FormField';
+import FormStateChecker from '^forms/FormStateChecker';
+
+const Form = (): ReactElement => (
+  <FormProvider
+    // Add a real handler
+    onSubmit={console.log}
+  >
+    <Typography variant="h5">
+      Form
+    </Typography>
+
+    <FormField
+      name="test"
+      label="Test"
+      Target={InputField}
+    />
+    
+    ...
+    // Any other fields
+    ...
+    
+    <FormStateChecker />
+  </FormProvider>
+);
+
+export default Form;
+```
+
+[**Usage exaplme**](https://api.media.atlassian.com/file/c5efe230-9a70-457d-9cce-211c1d0e2221/artifact/video_1280.mp4/binary?client=91d26fd2-4d7b-4d52-99ed-1608fa51a7b4&collection=contentId-1440579603&max-age=2592000&token=eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI5MWQyNmZkMi00ZDdiLTRkNTItOTllZC0xNjA4ZmE1MWE3YjQiLCJhY2Nlc3MiOnsidXJuOmZpbGVzdG9yZTpjb2xsZWN0aW9uOmNvbnRlbnRJZC0xNDQwNTc5NjAzIjpbInJlYWQiXX0sImV4cCI6MTYwODIxODE1NSwibmJmIjoxNjA4MjE1MjE1fQ.QQpyl0xOG19nDmkfbLIl2ZIV7GRwC2VcImjkpnSlO74)

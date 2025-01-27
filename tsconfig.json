@@ -1,0 +1,78 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "downlevelIteration": true,
+    "noEmit": true,
+    "declaration": true,
+    "jsx": "react",
+    "baseUrl": "./src",
+    "paths": {
+      "^styles/*": [
+        "assets/scss/*.scss"
+      ],
+      "^enums/*": [
+        "enums/*"
+      ],
+      "^types/*": [
+        "types/*"
+      ],
+      "^utils/*": [
+        "utils/*"
+      ],
+      "^icons/*": [
+        "icons/*"
+      ],
+      "^configs/*": [
+        "configs/*"
+      ],
+      "^hooks/*": [
+        "hooks/*"
+      ],
+      "^inputs/*": [
+        "inputs/*"
+      ],
+      "^controls/*": [
+        "controls/*"
+      ],
+      "^forms/*": [
+        "forms/*"
+      ],
+      "^feedback/*": [
+        "feedback/*"
+      ],
+      "^data-display/*": [
+        "data-display/*"
+      ],
+      "^layout/*": [
+        "layout/*"
+      ],
+      "^common/*": [
+        "common/*"
+      ]
+    }
+  },
+  "files": [
+    "node_modules/@material-ui/lab/themeAugmentation/index.d.ts"
+  ],
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

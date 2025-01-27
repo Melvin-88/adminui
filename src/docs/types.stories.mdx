@@ -1,0 +1,145 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Exposed types" />
+
+# Exposed types
+
+**DeepPartial** 
+``` ts
+type DeepPartial<T> = {
+  [P in keyof T]?: T[P] extends Array<infer U>
+  ? Array<DeepPartial<U>>
+  : T[P] extends ReadonlyArray<infer U>
+  ? ReadonlyArray<DeepPartial<U>>
+  : DeepPartial<T[P]>
+};
+
+```
+**IGlobalConfig** - global config props
+
+``` ts
+interface IGlobalConfig {
+  locale: Locale;
+  textOverrides: Partial<TTexts>;
+}
+```
+
+**INumberFormat**
+
+``` ts
+interface INumberFormat {
+  thousandsSeparator: string;
+  radix: string;
+}
+```
+
+**IDateTimeFormat**
+
+``` ts
+interface IDateTimeFormat {
+  date: string;
+  time: string;
+}
+```
+
+**IValidationTargetProps**
+
+``` ts
+interface IValidationTargetProps {
+  error?: string;
+  name?: string;
+  disabled?: boolean;
+  inputRef?: Ref<HTMLElement | null>;
+}
+```
+
+**IMenuItem**
+
+``` ts
+interface IMenuItem {
+  label: ReactNode;
+  value: string;
+  onClick?: (value: string) => void;
+}
+```
+
+**IPageHeaderAction**
+
+``` ts
+interface IPageHeaderAction extends Pick<IButtonProps, 'className' | 'color' | 'disabled' | 'variant' | 'loading' | 'menuItems'>, Omit<IMenuItem, 'onClick' | 'value'> {
+  value?: string;
+  Icon: ComponentType<SvgIconProps>;
+  onClick?: (value?: string) => void;
+  type?: 'button' | 'icon';
+}
+```
+
+**IPageHeaderTab**
+
+``` ts
+interface IPageHeaderTab extends Omit<IMenuItem, 'onClick'> {}
+```
+
+**IOption**
+
+``` ts
+interface IOption<TValue extends string | number = string | number> {
+  label: string;
+  value: TValue;
+}
+```
+
+**IDisableableOption** - extends `IOption` with optional `disabled` field.
+
+``` ts
+interface IDisableableOption<TValue extends string | number = string | number> extends IOption<TValue> {
+  disabled?: boolean;
+}
+```
+
+**IListItem**
+
+``` ts
+interface IListItem {
+  name: ReactNode;
+  key: string | number;
+}
+```
+
+**ISortingItem** - extends `react-sortablejs`'s `ItemInterface` that has `id` as a required field.
+
+```ts
+interface ISortingItem extends ItemInterface, IListItem { }
+```
+
+**ISkeletonProps**
+
+``` ts
+interface ISkeletonProps {
+  className?: string;
+}
+```
+
+**INavigationMenuItem**
+
+```ts
+interface INavigationMenuItem<MenuItemType extends IMenuItem = IMenuItem> extends IMenuItem, Pick<IButtonProps<MenuItemType>, 'disabled' | 'tabIndex' | 'className' | 'innerRef' | 'type' | 'MenuItem' | 'menuItems' | 'getMenuItemSelected'> {
+  Icon: ComponentType<SvgIconProps>;
+}
+```
+
+**INavigationMenuItemsGroup**
+
+```ts
+interface INavigationMenuItemsGroup {
+  label: ReactNode;
+  Icon: ComponentType<SvgIconProps>;
+  items: INavigationMenuItem[];
+}
+```
+
+**TNavigationMenuItem**
+
+```ts
+type TNavigationMenuItem = INavigationMenuItem | INavigationMenuItemsGroup
+```

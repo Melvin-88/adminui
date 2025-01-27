@@ -1,0 +1,40 @@
+@import '^styles/utils';
+
+.navigationMenuItems {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  width: 100%;
+}
+
+.item, .itemsGroup {
+  &:not(:first-child) {
+    margin-top: 0.5rem;
+  }
+}
+
+.itemsGroup {
+  padding: 0.5rem 0;
+
+  border-width: 1px 0;
+  border-style: solid;
+
+  border-color: var(--theme-color-grey-100);
+
+  &:first-child, & + & {
+    padding-top: 0;
+
+    border-top: 0;
+  }
+
+  &:last-child {
+    padding-bottom: 0;
+
+    border-bottom: 0;
+  }
+
+  @include desktop {
+    border: 0;
+  }
+}

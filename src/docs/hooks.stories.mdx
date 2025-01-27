@@ -1,0 +1,61 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Exposed hooks" />
+
+# Exposed hooks
+
+**useNumberFormat** `( ) => INumberFormat` - returns number format based on current locale.
+``` typescript
+interface INumberFormat {
+  thousandsSeparator: string;
+  radix: string;
+}
+```
+
+**useFormattedNumber** `(value?: number | string) => string` - returns formatted number, according to the current locale, if `value` is `undefined` - returns an empty string.
+
+**useDateTimeFormat** `( ) => IDateTimeFormat` - returns the date and time format depends on the current locale.
+``` typescript
+interface IDateTimeFormat {
+  date: string;
+  time: string;
+}
+```
+
+**useFormattedDate** `(value?: string) => string` - returns formatted date, according to the current locale, if `value` is `undefined` - returns an empty string.
+
+**useFormattedDateTime** `(value?: string) => string` - returns formatted date + time, according to the current locale, if `value` is `undefined` - returns an empty string.
+
+**useFormattedTime** `(value?: string) => string` - returns formatted time, according to the current locale, if `value` is `undefined` - returns an empty string.
+
+**useMaskedValue** `(value: string, mask: AnyMaskedOptions['mask']) => string` - returns masked value.
+
+**useTexts** `( ) => TTexts` - returns texts for lib's componets based on the current locale.
+
+**useBodyScrollLock** `(isLocked: boolean) => void` - prevents body scroll.
+
+**useDeviceType** `() => IDeviceTypeContext` - returns device type context.
+
+``` ts
+interface IDeviceTypeContext {
+ deviceType: DeviceType;
+ isMobile: boolean;
+ isTablet: boolean;
+ isDesktop: boolean;
+}
+
+enum DeviceType {
+  Mobile = 'mobile',
+  Tablet = 'tablet',
+  Desktop = 'desktop',
+}
+```
+
+**useGlobalConfig** `() => IGlobalConfig` - returns global config context.
+
+``` ts
+interface IGlobalConfig {
+  locale: Locale;
+  textOverrides: Partial<TTexts>;
+}
+```

@@ -1,0 +1,32 @@
+@import '^styles/utils';
+
+.layout {
+  display: flex;
+
+  height: 48rem;
+
+  &.fullHeight {
+    height: 100%;
+  }
+
+  .content {
+    width: 100%;
+
+    padding: 4rem 0.5rem 1rem;
+
+    @include desktop {
+      padding-top: 1rem;
+    }
+
+    .placeholder {
+      width: 100%;
+      min-height: 20rem;
+
+      background-color: var(--theme-color-grey-400);
+
+      &:not(:first-child) {
+        margin-top: 1rem;
+      }
+    }
+  }
+}

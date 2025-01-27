@@ -1,0 +1,41 @@
+.filePicker {
+  width: 100%;
+
+  color: var(--theme-color-grey-900);
+
+  background-color: var(--theme-color-grey-000);
+
+  .dropzoneArea {
+    width: 100%;
+    min-height: 5.625rem !important;
+
+    .text {
+      margin: 1rem;
+
+      font-size: 0.875rem;
+    }
+
+    .icon {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+
+  .files {
+    &.hasDropzoneArea {
+      margin-top: 0.75rem;
+    }
+
+    .file {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      width: 100%;
+
+      &:not(:first-child) {
+        margin-top: 0.5rem;
+      }
+    }
+  }
+}

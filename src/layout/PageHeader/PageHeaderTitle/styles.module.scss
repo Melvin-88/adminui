@@ -1,0 +1,83 @@
+@import '^styles/utils';
+
+.pageHeaderTitle {
+  display: flex;
+  align-items: center;
+
+  &.shrink {
+    .titles {
+      flex-direction: column-reverse;
+
+      @include desktop {
+        grid-template-columns: unset;
+
+        .mainTitle {
+          order: 1;
+        }
+      }
+
+      .subTitle {
+        @include desktop {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+
+  .backButton {
+    margin-right: 1rem;
+
+    @include desktop {
+      margin-right: 0.75rem;
+    }
+  }
+
+  .titles {
+    display: flex;
+    flex-direction: column;
+
+    max-width: 100%;
+    overflow-x: hidden;
+
+    @include desktop {
+      display: grid;
+      align-items: center;
+      justify-content: space-between;
+      grid-template-columns: 1fr auto;
+    }
+
+    .secondaryInfo {
+      &.hasSubtitle .label {
+        @include desktop {
+          margin-left: 0.75rem;
+        }
+      }
+
+      @include desktop {
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    .subTitle {
+      display: block;
+
+      color: var(--theme-color-grey-400);
+
+      @include desktop {
+        margin-left: 0.75rem;
+      }
+    }
+
+    .labelWrapper {
+      display: flex;
+      gap: 0.75rem;
+
+      flex-wrap: wrap;
+
+      @include desktop {
+        margin-left: 0.75rem;
+      }
+    }
+  }
+}

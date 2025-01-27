@@ -1,0 +1,16 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Using RichTextEditor" />
+
+# Using RichTextEditor
+
+Currently, we use [**SunEditor**](https://github.com/JiHong88/SunEditor) as our WYSIWYG editor for admin panels.
+
+The html code it produces includes some custom styles
+
+So if we want to display some markup, generated via the RichTextEditor in the way as it looked in edit mode, we need to:
+
+1. Wrap the displaying content in a `div` with class `sun-editor-editable`
+2. Include this [**css file**](https://unpkg.com/suneditor@2.34.3/src/assets/css/suneditor-contents.css)
+
+[**Ref to docs**](https://github.com/JiHong88/SunEditor#3-contents-display)

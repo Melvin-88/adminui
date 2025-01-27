@@ -1,0 +1,68 @@
+@import '^styles/utils';
+
+.paper {
+  width: 100%;
+
+  margin: 1.5rem;
+
+  @include desktop {
+    margin: 2rem;
+  }
+}
+
+.paperDesktop {
+  max-width: 32rem;
+}
+
+.paperMobile {
+  max-width: 21.438rem;
+}
+
+.paperFullScreen {
+  max-width: inherit;
+
+  margin: 0;
+  
+  @include desktop-wide {
+    @include widescreen-boundary;
+    margin-left: calc((100vw + #{$navigation-width} - #{$widescreen-boundary-width}) / 2);
+  }
+}
+
+.dialog {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  width: 100%;
+  overflow: auto;
+}
+
+.dialogFullscreen {
+  width: 100%;
+  height: 100%;
+}
+
+.dialogFullscreenLoading {
+  width: 100%;
+}
+
+.dialogTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dialogTitleLoading {
+  margin-left: -0.5rem;
+}
+
+.content {
+  overflow: visible;
+
+  color: var(--theme-color-grey-500);
+}
+
+.contentNoPadding {
+  padding: 0;
+}

@@ -1,0 +1,223 @@
+{
+  "extends": "stylelint-config-sass-guidelines",
+  "ignoreFiles": [
+    "!**/*.scss"
+  ],
+  "plugins": [
+    "stylelint-order"
+  ],
+  "rules": {
+    "selector-list-comma-newline-after": "never-multi-line",
+    "max-nesting-depth": 4,
+    "max-empty-lines": 1,
+    "selector-max-compound-selectors": 4,
+    "selector-max-id": 2,
+    "selector-class-pattern": "^[a-z][a-zA-Z0-9]+$",
+    "block-no-empty": [true, {
+      "severity": "warning"
+    }],
+    "scss/dollar-variable-empty-line-before": [
+      "always",
+      {
+        "except": [
+          "first-nested",
+          "after-comment",
+          "after-dollar-variable"
+        ]
+      }
+    ],
+    "declaration-empty-line-before": null,
+    "rule-empty-line-before": [
+      "always",
+      {
+        "except": [
+          "first-nested"
+        ],
+        "ignore": [
+          "after-comment"
+        ]
+      }
+    ],
+    "at-rule-empty-line-before": [
+      "always",
+      {
+        "except": [
+          "first-nested"
+        ],
+        "ignore": [
+          "after-comment"
+        ]
+      }
+    ],
+    "order/order": [
+      "custom-properties",
+      "dollar-variables",
+      {
+        "type": "at-rule",
+        "hasBlock": false
+      },
+      "declarations",
+      {
+        "type": "rule",
+        "selector": "&.+"
+      },
+      {
+        "type": "at-rule",
+        "hasBlock": true
+      },
+      "rules"
+    ],
+    "order/properties-alphabetical-order": null,
+    "order/properties-order": [
+      {
+        "emptyLineBefore": "always",
+        "noEmptyLineBetween": true,
+        "groupName": "pseudo-elements-attributes",
+        "properties": [
+          "content"
+        ]
+      },
+      {
+        "emptyLineBefore": "always",
+        "noEmptyLineBetween": true,
+        "groupName": "positioning",
+        "properties": [
+          "position",
+          "top",
+          "bottom",
+          "left",
+          "right",
+          "z-index"
+        ]
+      },
+      {
+        "emptyLineBefore": "always",
+        "noEmptyLineBetween": true,
+        "groupName": "displaying",
+        "properties": [
+          "display",
+          "flex-direction",
+          "flex-wrap",
+          "align-items",
+          "justify-content",
+          "flex"
+        ]
+      },
+      {
+        "emptyLineBefore": "always",
+        "noEmptyLineBetween": true,
+        "groupName": "dimensions",
+        "properties": [
+          "min-width",
+          "max-width",
+          "width",
+          "min-height",
+          "max-height",
+          "height",
+          "overflow",
+          "overflow-x",
+          "overflow-y"
+        ]
+      },
+      {
+        "emptyLineBefore": "always",
+        "noEmptyLineBetween": true,
+        "groupName": "indentation",
+        "properties": [
+          "margin",
+          "margin-top",
+          "margin-bottom",
+          "margin-left",
+          "margin-right",
+          "padding",
+          "padding-top",
+          "padding-bottom",
+          "padding-left",
+          "padding-right"
+        ]
+      },
+      {
+        "emptyLineBefore": "always",
+        "noEmptyLineBetween": true,
+        "groupName": "visibility",
+        "properties": [
+          "visibility",
+          "opacity"
+        ]
+      },
+      {
+        "emptyLineBefore": "always",
+        "noEmptyLineBetween": true,
+        "groupName": "svg-attributes",
+        "properties": [
+          "fill",
+          "stroke"
+        ]
+      },
+      {
+        "emptyLineBefore": "always",
+        "noEmptyLineBetween": true,
+        "groupName": "text",
+        "properties": [
+          "font",
+          "font-size",
+          "font-weight",
+          "font-family",
+          "color",
+          "line-height",
+          "text-align",
+          "text-transform",
+          "text-decoration"
+        ]
+      },
+      {
+        "emptyLineBefore": "always",
+        "noEmptyLineBetween": true,
+        "groupName": "background",
+        "properties": [
+          "background",
+          "background-color",
+          "background-image",
+          "background-position",
+          "background-size",
+          "background-repeat"
+        ]
+      },
+      {
+        "emptyLineBefore": "always",
+        "noEmptyLineBetween": true,
+        "groupName": "border",
+        "properties": [
+          "border",
+          "border-top",
+          "border-bottom",
+          "border-left",
+          "border-right",
+          "border-radius",
+          "border-width",
+          "border-color",
+          "box-shadow"
+        ]
+      },
+      {
+        "emptyLineBefore": "always",
+        "noEmptyLineBetween": true,
+        "groupName": "transformation",
+        "properties": [
+          "transition",
+          "transform",
+          "translate"
+        ]
+      },
+      {
+        "emptyLineBefore": "always",
+        "noEmptyLineBetween": true,
+        "groupName": "accessibility",
+        "properties": [
+          "cursor",
+          "outline"
+        ]
+      }
+    ]
+  }
+}

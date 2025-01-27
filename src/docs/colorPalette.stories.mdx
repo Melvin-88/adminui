@@ -1,0 +1,22 @@
+import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';
+
+import ColorType from '^enums/colors/ColorType';
+import MainColorWeight from '^enums/colors/MainColorWeight';
+
+import colorPalette from './colorPalette';
+
+<Meta title="Color Palette" />
+
+# Color Palette
+
+In our admin projects we try to stick to a basic set of colors  
+So, this library exposes them all as `css variables`:
+
+<ColorPalette>
+  {Object.keys(colorPalette).map(color => (
+    <ColorItem
+      title={color}
+      colors={colorPalette[color]}
+    />
+  ))}
+</ColorPalette>

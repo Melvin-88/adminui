@@ -1,0 +1,55 @@
+.label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.25rem 0.375rem;
+
+  text-align: center;
+
+  border-radius: 0.25rem;
+}
+
+.primary {
+  color: var(--theme-color-grey-400);
+
+  background-color: var(--theme-color-primary-200);
+}
+
+.yellow {
+  background-color: var(--theme-color-yellow-300);
+}
+
+.grey {
+  color: var(--theme-color-grey-400);
+
+  background-color: var(--theme-color-grey-050);
+}
+
+.red {
+  color: var(--theme-color-red-500);
+
+  background-color: var(--theme-color-red-100);
+}
+
+.green {
+  background-color: var(--theme-color-green-300);
+}
+
+.orange {
+  background-color: var(--theme-color-secondary-200);
+}
+
+.violet {
+  background-color: var(--theme-color-violet-300);
+}
+
+.blue {
+  background-color: var(--theme-color-blue-300);
+}
+
+.dark {
+  color: var(--theme-color-grey-000);
+
+  background-color: var(--theme-color-grey-400);
+}

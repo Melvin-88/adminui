@@ -1,0 +1,31 @@
+@import '^styles/utils';
+
+.item {
+  width: 100%;
+
+  padding: 1.25rem 0.75rem;
+
+  border-bottom: 1px solid var(--theme-color-grey-100);
+
+  &.selected {
+    background-color: var(--theme-color-yellow-100);
+  }
+
+  &.error {
+    background-color: var(--theme-color-red-050);
+  }
+
+  &.disabled {
+    background-color: var(--theme-color-grey-050);
+  }
+
+  &.pointer:not(.disableHover) {
+    @include pointer-no-highlight;
+  }
+
+  &:not(.disableHover) {
+    @include hover {
+      background-color: var(--theme-color-yellow-100);
+    }
+  }
+}

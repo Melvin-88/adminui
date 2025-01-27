@@ -1,0 +1,61 @@
+@import '^styles/utils';
+
+.sideBarContainer {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+}
+
+.footerBlock {
+  position: sticky;
+  bottom: 0;
+
+  width: 100%;
+
+  margin-top: auto;
+  padding: 1rem;
+
+  background-color: var(--theme-color-grey-000);
+
+  @include desktop {
+    width: 100%;
+  }
+}
+
+.sideBarWrapper {
+  width: 100%;
+
+  &.small {
+    --side-bar-width: 20rem;
+  }
+
+  &.medium {
+    --side-bar-width: 34rem;
+  }
+
+  @include desktop {
+    width: var(--side-bar-width);
+  }
+}
+
+.closeBlock {
+  display: flex;
+
+  margin-left: auto;
+}
+
+.titleBlock {
+  display: flex;
+  align-items: center;
+
+  padding: 1rem;
+}
+
+.sideBarContent {
+  flex: 1;
+
+  padding: 0 1rem 1rem;
+}

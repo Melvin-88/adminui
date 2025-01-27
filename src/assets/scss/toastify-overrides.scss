@@ -1,0 +1,49 @@
+/* stylelint-disable selector-class-pattern */
+.Toastify {
+  .Toastify__toast-container {
+    $margin: 1.5rem;
+
+    bottom: $margin;
+    right: $margin;
+
+    width: unset;
+
+    padding: 0;
+
+    &.Toastify__toast-container--bottom-right {
+      margin-left: $margin;
+    }
+
+    &.Toastify__toast-container--bottom-center {
+      left: $margin;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .Toastify__toast--default {
+      color: inherit;
+
+      background: transparent;
+    }
+
+    .Toastify__toast {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+
+      min-height: unset;
+
+      margin-bottom: 0;
+      padding: 0;
+
+      border-radius: 0;
+      box-shadow: none;
+
+      &:not(:last-child) {
+        margin-bottom: 0.75rem;
+      }
+    }
+  }
+}

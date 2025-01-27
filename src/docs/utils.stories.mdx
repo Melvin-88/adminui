@@ -1,0 +1,30 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Exposed utils" />
+
+# Exposed utils
+
+## Services
+
+**NotificationService** - expose notification service with `success` `warning` `error` `info` methods (which expect content and return a notification key `(content: ReactNode) => Key`) for displaying notifications depend on the notification type.
+
+**LocaleService** - provides access to current locale outside of component's lifecycle by `LocaleService.locale`.
+
+## Formatters
+
+**formatNumber** - `(value?: number | string) => string` - returns formatted number, according to the current locale, if `value` is `undefined` - returns an empty string.
+
+**formatDate** - `(value?: string) => string` - returns formatted date, according to the current locale, if `value` is `undefined` - returns an empty string.
+
+**formatDateTime** - `(value?: string) => string` - returns formatted date + time, according to the current locale, if `value` is `undefined` - returns an empty string.
+
+**formatTime** - `(value?: string) => string` - returns formatted time, according to the current locale, if `value` is `undefined` - returns an empty string.
+
+**maskValue** - `(value: string, mask: AnyMaskedOptions['mask']) => string` - returns masked value.
+
+## Common
+
+**arrayToMap** `<T = any>(array: T[], key: keyof T) => Record<string, T>` - convert an array into map based on the selected property.
+
+**bytesToMegabytes** `(size: number) => number` - a function that converts bytes to megabytes.
+

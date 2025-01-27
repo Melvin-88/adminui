@@ -1,0 +1,74 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="SCSS utils" />
+
+# Adaptive utils
+
+In our projects we use mobile first approach, so by default styles are for mobile layout.
+
+There are 2 breakpoints in our responsive utilities:
+
+``` css
+$break-md: 48rem; // 768px
+$break-lg: 64.0625rem; // 1025px
+```
+
+Which we use in the following mixins:
+
+``` css
+@mixin tablet() {
+  @media screen and (min-width: $break-md) {
+    @content;
+  }
+}
+
+@mixin desktop() {
+  @media screen and (min-width: $break-lg) {
+    @content;
+  }
+}
+```
+
+# Common utils
+
+As well we provide some commonly used utils, like:
+
+``` css
+@mixin pointer-no-highlight() {
+  cursor: pointer;
+
+  &:hover, &:focus, &:active {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    user-select: none;
+  }
+}
+
+@mixin hover() {
+  @media (hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+}
+```
+
+# How to import utils in the scss files: 
+
+``` css
+@import '@interdan/admin-ui/dist/assets/scss/utils';
+```
+
+Usage example: 
+
+``` css
+@import '@interdan/admin-ui/dist/assets/scss/utils';
+
+.wrapper {
+  @include desktop() {
+    margin: 5rem;
+  }
+}
+```
+
+> In this example, margins will only be applied to screens with a minimum width of 1025 pixels.
